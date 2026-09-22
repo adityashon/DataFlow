@@ -13,12 +13,12 @@ app = FastAPI(
 )
 
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["https://dataflow-ggj6.onrender.com", "https://dataflow-ggj6.onrender.com/api"],
-    allow_methods=["GET", "POST"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["https://dataflow-ggj6.onrender.com", "https://dataflow-ggj6.onrender.com/api"],
+#     allow_methods=["GET", "POST"],
+#     allow_headers=["*"],
+# )
 
 
 

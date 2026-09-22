@@ -65,7 +65,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.file"
 # ── FastAPI Microservice URL ───────────────────────────────────────────────────
 # This is the address where our FastAPI processing service lives.
 # Django calls this URL whenever it needs to process data.
-FASTAPI_BASE_URL = "https://dataflow-ggj6.onrender.com"
+FASTAPI_BASE_URL = "https://dataflow-s5of.onrender.com"
 FASTAPI_BASE_URL = os.environ.get(
     FASTAPI_BASE_URL,
     "http://127.0.0.1:8001",
