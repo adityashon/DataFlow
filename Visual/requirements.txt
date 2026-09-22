@@ -5,6 +5,7 @@ django-crispy-forms
 # fastapi
 fastapi
 uvicorn[standard]     # ASGI server that runs FastAPI
+gunicorn
 python-multipart      # allows FastAPI to receive file uploads
 # httpx
 httpx
