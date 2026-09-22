@@ -48,7 +48,7 @@ def upload(request):
     try:
         with httpx.Client(timeout=120.0) as client:  # 2 min timeout for large files
             response = client.post(
-                f"{settings.FASTAPI_BASE_URL}/process/",
+                f"{settings.FASTAPI_BASE_URL}/api/process/",
                 files={"file": (uploaded_file.name, uploaded_file.read(), uploaded_file.content_type)},
             )
     except httpx.ConnectError:
