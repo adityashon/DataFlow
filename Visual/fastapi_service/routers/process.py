@@ -8,7 +8,7 @@ from fastapi_service.services.clean    import clean_dataframe
 from fastapi_service.services.analytics import generate_analytics
 
 # APIRouter is like Django's include() — a group of related endpoints
-router = APIRouter(prefix="/api", tags=["processing"])
+router = APIRouter( tags=["processing"])
 
 @router.post("/process/")
 async def process_file(file: UploadFile = File(...)):
