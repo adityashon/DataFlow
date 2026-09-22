@@ -64,7 +64,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.file"
 # ── FastAPI Microservice URL ───────────────────────────────────────────────────
 # This is the address where our FastAPI processing service lives.
 # Django calls this URL whenever it needs to process data.
-FASTAPI_BASE_URL = '/api'
+FASTAPI_BASE_URL = 'FASTAPI_BASE_URL = "https://dataflow-ggj6.onrender.com"'
 
 # ── File uploads ───────────────────────────────────────────────────────────────
 # Limit upload size to 50 MB
