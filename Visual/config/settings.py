@@ -70,7 +70,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.file"
 
 # ── FastAPI Microservice URL ───────────────────────────────────────────────────
 
-FASTAPI_BASE_URL = "https://dataflow-s5of.onrender.com"
+FASTAPI_BASE_URL = "https://dataflow-7fb4.onrender.com"
 FASTAPI_BASE_URL = os.environ.get(
     FASTAPI_BASE_URL,
     "http://127.0.0.1:8001",
