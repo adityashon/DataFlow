@@ -13,13 +13,7 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# ── CORS Middleware 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:8000", "http://127.0.0.1:8000"],
-    allow_methods=["GET", "POST"],
-    allow_headers=["*"],
-)
+
 
 # ── Register routers 
 app.include_router(router)
@@ -29,6 +23,6 @@ app.include_router(router)
 async def root():
     return {
         "service": "DataFlow FastAPI",
-        "docs":    "http://localhost:8001/docs",
-        "health":  "http://localhost:8001/api/health/",
+        "docs":    "api/docs",
+        "health":  "/api/health/",
     }
