@@ -19,9 +19,9 @@ THEMES = [
 ]
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+
 # VIEW 1: Home page — shows the upload form
-# ─────────────────────────────────────────────────────────────────────────────
+
 
 def index(request):
 
@@ -115,7 +115,7 @@ def download_dashboard(request):
     if not data:
         return redirect("index")
 
-    html_content = render_to_string("core/dashboard.html", {
+    html_content = render_to_string("core/offline_dashboard.html", {
         "title":          "DataFlow — Analytics Dashboard",
         "filename":       filename,
         "file_type":      data.get("file_type", ""),

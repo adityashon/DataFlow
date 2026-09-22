@@ -1,0 +1,234 @@
+      /* ── Cozy Cream Design System ─────────────────────── */
+      :root {
+        --cream: #faf7f2;
+        --cream2: #f3ede3;
+        --cream3: #ede4d6;
+        --white: #ffffff;
+        --parchment: #fdf9f4;
+        --clay: #c4704a;
+        --clay-light: #f0d5c8;
+        --clay-dark: #9e5336;
+        --sage: #6a9e77;
+        --sage-light: #d2e8d8;
+        --sage-dark: #4a7a57;
+        --rose: #b86b7a;
+        --rose-light: #f0d6db;
+        --gold: #c9943a;
+        --gold-light: #f5e4bf;
+        --periwinkle: #6b7ec4;
+        --periwinkle-light: #d4d9f5;
+        --mauve: #9b7ba8;
+        --mauve-light: #e6d9ee;
+        --border: #e0d4c4;
+        --border2: #cfc0ac;
+        --ink: #2d1f14;
+        --ink2: #5c4535;
+        --ink3: #8c7060;
+        --ink4: #b8a090;
+        --danger: #c05050;
+        --danger-light: #f5dada;
+        --success: #4a7a57;
+        --success-light: #d2e8d8;
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --mono: "DM Mono", "Courier New", monospace;
+        --radius: 12px;
+        --shadow-sm: 0 2px 8px rgba(45, 31, 20, 0.06);
+        --shadow: 0 4px 20px rgba(45, 31, 20, 0.1);
+        --shadow-lg: 0 12px 40px rgba(45, 31, 20, 0.14);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--cream);
+        color: var(--ink);
+        font-family: var(--sans);
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--cream2);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 3px;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(var(--border) 1px, transparent 1px);
+        background-size: 28px 28px;
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ── Header ──────────────────────────────────────── */
+      header {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 40px;
+        background: var(--white);
+        border-bottom: 1.5px solid var(--border);
+        box-shadow: var(--shadow-sm);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--clay), var(--rose));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(196, 112, 74, 0.3);
+      }
+      .logo-name {
+        font-family: var(--serif);
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .logo-name em {
+        font-style: italic;
+        color: var(--clay);
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .pill {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.04em;
+      }
+      .pill-clay {
+        background: var(--clay-light);
+        color: var(--clay-dark);
+      }
+      .pill-sage {
+        background: var(--sage-light);
+        color: var(--sage-dark);
+      }
+      .pill-periwinkle {
+        background: var(--periwinkle-light);
+        color: var(--periwinkle);
+      }
+      .pulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--sage);
+        box-shadow: 0 0 0 0 rgba(106, 158, 119, 0.4);
+        animation: ring 2s ease-in-out infinite;
+      }
+      @keyframes ring {
+        0% {
+          box-shadow: 0 0 0 0 rgba(106, 158, 119, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 7px rgba(106, 158, 119, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(106, 158, 119, 0);
+        }
+      }
+
+      /* ── Nav actions ─────────────────────────────────── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--sans);
+        font-weight: 500;
+        font-size: 0.88rem;
+        padding: 10px 22px;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        border: 1.5px solid transparent;
+      }
+      .btn-primary {
+        background: var(--clay);
+        color: var(--white);
+        border-color: var(--clay);
+        box-shadow: 0 3px 12px rgba(196, 112, 74, 0.3);
+      }
+      .btn-primary:hover {
+        background: var(--clay-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 5px 18px rgba(196, 112, 74, 0.4);
+      }
+      .btn-ghost {
+        background: var(--white);
+        color: var(--ink2);
+        border-color: var(--border2);
+      }
+      .btn-ghost:hover {
+        border-color: var(--clay);
+        color: var(--clay);
+        background: var(--clay-light);
+      }
+      .btn-sage {
+        background: var(--sage);
+        color: var(--white);
+        border-color: var(--sage);
+        box-shadow: 0 3px 12px rgba(106, 158, 119, 0.3);
+      }
+      .btn-sage:hover {
+        background: var(--sage-dark);
+        transform: translateY(-1px);
+      }
+
+      /* ── Container ───────────────────────────────────── */
+      .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1540px;
+        margin: 0 auto;
+        padding: 40px;
+      }
+
+      /* ── Alerts (Django messages) ────────────────────── */
+      .alert {
+        padding: 14px 20px;
+        border-radius: var(--radius);
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        border: 1.5px solid;
+      }
+      .alert-error {
+        background: var(--danger-light);
+        border-color: var(--danger);
+        color: var(--danger);
+      }
+      .alert-success {
+        background: var(--success-light);
+        border-color: var(--success);
+        color: var(--success);
+      }

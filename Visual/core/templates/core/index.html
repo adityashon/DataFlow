@@ -1,76 +1,15 @@
-{% extends "core/base.html" %}
-{% block title %}DataFlow — Upload Your Data{% endblock %}
+{% extends "core/base.html" %} 
+{% load static %}
+{% block title %}DataFlow — Upload Your Data{% endblock %} {% block page_styles %}
 
-{% block page_styles %}
-<style>
-.upload-hero{text-align:center;padding:60px 24px 40px}
-.upload-hero h1{font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}
-.upload-hero h1 em{font-style:italic;color:var(--clay)}
-.upload-hero p{color:var(--ink3);font-size:1.05rem;max-width:500px;margin:0 auto 0;line-height:1.75}
-
-.how-it-works{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:40px 0;max-width:860px;margin-left:auto;margin-right:auto}
-.step-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow-sm)}
-.step-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--clay);margin-bottom:10px}
-.step-title{font-weight:600;color:var(--ink2);margin-bottom:6px;font-size:.95rem}
-.step-desc{font-size:.83rem;color:var(--ink3);line-height:1.6}
-
-.upload-card{max-width:640px;margin:0 auto;background:var(--white);border:2.5px dashed var(--border2);border-radius:20px;padding:56px 40px;text-align:center;box-shadow:var(--shadow-sm);transition:all .25s}
-.upload-card:hover,.upload-card.drag-over{border-color:var(--clay);background:var(--parchment);box-shadow:0 0 0 4px var(--clay-light),var(--shadow);transform:translateY(-2px)}
-.upload-icon{font-size:3rem;display:block;margin-bottom:20px;filter:drop-shadow(0 4px 8px rgba(196,112,74,.2))}
-.upload-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:10px}
-.upload-sub{color:var(--ink3);font-size:.92rem;margin-bottom:28px;line-height:1.6}
-
-/* THE FIX — label-based file picker (always works) */
-#fileInput{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-.file-label{display:inline-block;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:14px 36px;border-radius:100px;background:var(--clay);color:var(--white);cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(196,112,74,.35);user-select:none}
-.file-label:hover{background:var(--clay-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(196,112,74,.45)}
-
-.drop-or{display:flex;align-items:center;gap:12px;margin:22px 0 0;font-size:.8rem;color:var(--ink4);font-family:var(--mono)}
-.drop-or::before,.drop-or::after{content:'';flex:1;height:1px;background:var(--border)}
-
-.format-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:640px;margin:24px auto 0}
-.fmt-badge{display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:100px;font-size:.8rem;font-weight:500;border:1.5px solid}
-.fmt-badge span{font-family:var(--mono);font-size:.72rem}
-.fmt-csv{background:var(--sage-light);border-color:var(--sage);color:var(--sage-dark)}
-.fmt-xlsx{background:var(--gold-light);border-color:var(--gold);color:#7A5E1A}
-.fmt-xml{background:var(--periwinkle-light);border-color:var(--periwinkle);color:#3B4E9E}
-.fmt-sql{background:var(--rose-light);border-color:var(--rose);color:#8A3A4A}
-.fmt-db{background:var(--mauve-light);border-color:var(--mauve);color:#6B4A7A}
-
-/* Upload progress overlay */
-.upload-progress{display:none;position:fixed;inset:0;background:rgba(250,247,242,.92);z-index:100;backdrop-filter:blur(4px);align-items:center;justify-content:center}
-.upload-progress.active{display:flex}
-.progress-box{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:40px 48px;text-align:center;max-width:400px;box-shadow:var(--shadow-lg)}
-.progress-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:6px}
-.progress-sub{font-size:.85rem;color:var(--ink3);margin-bottom:24px}
-.progress-track{height:5px;background:var(--cream3);border-radius:3px;overflow:hidden;margin-bottom:16px}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--clay),var(--rose));border-radius:3px;width:0%;animation:prog 2s ease-in-out infinite}
-@keyframes prog{0%{width:0%;margin-left:0}50%{width:60%;margin-left:0}100%{width:100%;margin-left:0}}
-.progress-steps{text-align:left;display:flex;flex-direction:column;gap:8px}
-.ps{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--ink4);font-family:var(--mono)}
-.ps-icon{width:20px;height:20px;border-radius:50%;background:var(--cream2);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;animation:spin-icon 1s linear infinite}
-@keyframes spin-icon{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-
-/* Architecture explanation */
-.arch-section{margin:60px 0 0;max-width:860px;margin-left:auto;margin-right:auto}
-.arch-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;font-style:italic;color:var(--ink2);margin-bottom:20px;text-align:center}
-.arch-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:12px}
-.arch-box{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-sm)}
-.arch-box.django{border-color:var(--clay);background:var(--clay-light)}
-.arch-box.fastapi{border-color:var(--sage);background:var(--sage-light)}
-.arch-box.browser{border-color:var(--periwinkle);background:var(--periwinkle-light)}
-.arch-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
-.arch-name{font-weight:700;font-size:1rem;color:var(--ink)}
-.arch-role{font-size:.78rem;color:var(--ink3);margin-top:4px}
-.arch-arrow{font-size:1.5rem;color:var(--border2);text-align:center}
-@media(max-width:700px){.arch-grid{grid-template-columns:1fr;grid-template-rows:auto}.arch-arrow{transform:rotate(90deg)}}
-</style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 <div class="upload-hero">
-  <h1>Intelligent Data<br/><em>Analytics Platform</em></h1>
-  <p>Upload any structured file. DataFlow auto-cleans it, runs analytics, and builds interactive charts — powered by Django + FastAPI.</p>
+  <h1>Intelligent Data<br /><em>Analytics Platform</em></h1>
+  <p>
+    Upload any structured file. DataFlow auto-cleans it, runs analytics, and
+    builds interactive charts — powered by Django + FastAPI.
+  </p>
 </div>
 
 <!-- How it works -->
@@ -78,36 +17,51 @@
   <div class="step-card">
     <div class="step-num">01</div>
     <div class="step-title">Upload</div>
-    <div class="step-desc">Drop any CSV, Excel, XML, SQL or SQLite file. <!-- Django receives it. --> </div> 
-    
+    <div class="step-desc">
+      Drop any CSV, Excel, XML, SQL or SQLite file.
+      <!-- Django receives it. -->
+    </div>
   </div>
   <div class="step-card">
     <div class="step-num">02</div>
     <div class="step-title">Process</div>
-    <div class="step-desc"><!-- Django forwards to FastAPI. --> The engine cleans and analyses your data.</div>
+    <div class="step-desc">
+      <!-- Django forwards to FastAPI. -->
+      The engine cleans and analyses your data.
+    </div>
   </div>
   <div class="step-card">
     <div class="step-num">03</div>
     <div class="step-title">Visualise</div>
-    <div class="step-desc"><!-- Interactive D3.js --> charts render automatically from the results.</div>
+    <div class="step-desc">
+      <!-- Interactive D3.js -->
+      charts render automatically from the results.
+    </div>
   </div>
   <div class="step-card">
     <div class="step-num">04</div>
     <div class="step-title">Download</div>
-    <div class="step-desc">Export a standalone HTML dashboard — no server needed to view it.</div>
+    <div class="step-desc">
+      Export a standalone HTML dashboard — no server needed to view it.
+    </div>
   </div>
 </div>
 
 <!-- Error from Django -->
 {% if error %}
-<div class="alert alert-error" style="max-width:640px;margin:0 auto 20px">⚠️ {{ error }}</div>
+<div class="alert alert-error" style="max-width: 640px; margin: 0 auto 20px">
+  ⚠️ {{ error }}
+</div>
 {% endif %}
 
 <!-- Upload card -->
 <div class="upload-card" id="dropZone">
   <span class="upload-icon">🗂️</span>
   <div class="upload-title">Drop your data file here</div>
-  <div class="upload-sub">Supports CSV · Excel (XLSX/XLS) · XML · SQL Scripts · SQLite databases<br/>Max 50 MB · Auto-cleans and analyses instantly</div>
+  <div class="upload-sub">
+    Supports CSV · Excel (XLSX/XLS) · XML · SQL Scripts · SQLite databases<br />Max
+    50 MB · Auto-cleans and analyses instantly
+  </div>
 
   <!--
     WHY <form> + <label>?
@@ -115,11 +69,20 @@
     The <label for="fileInput"> triggers the file picker — no JavaScript needed.
     The form submits to /upload/ which Django's upload view handles.
   -->
-  <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data" id="uploadForm">
+  <form
+    method="post"
+    action="{% url 'upload' %}"
+    enctype="multipart/form-data"
+    id="uploadForm"
+  >
     {% csrf_token %}
     <label class="file-label" for="fileInput">📂 &nbsp;Choose a file</label>
-    <input type="file" id="fileInput" name="file"
-           accept=".csv,.xlsx,.xls,.xml,.sql,.db,.sqlite,.sqlite3"/>
+    <input
+      type="file"
+      id="fileInput"
+      name="file"
+      accept=".csv,.xlsx,.xls,.xml,.sql,.db,.sqlite,.sqlite3"
+    />
   </form>
 
   <div class="drop-or">or drag a file above</div>
@@ -171,38 +134,6 @@
     </div>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-// ── Drag & Drop ────────────────────────────────────────────────────────────
-const dropZone  = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
-const form      = document.getElementById('uploadForm');
-const progress  = document.getElementById('uploadProgress');
-
-dropZone.addEventListener('dragover',  e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-dropZone.addEventListener('dragleave', ()  => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault();
-  dropZone.classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (!file) return;
-  // Create a DataTransfer to set the input's files (needed for form submission)
-  const dt = new DataTransfer();
-  dt.items.add(file);
-  fileInput.files = dt.files;
-  submitForm();
-});
-
-// Auto-submit when file is chosen via the label
-fileInput.addEventListener('change', () => {
-  if (fileInput.files.length > 0) submitForm();
-});
-
-function submitForm() {
-  progress.classList.add('active');
-  form.submit();
-}
-</script>
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/index.js'%}"></script>
 {% endblock %}

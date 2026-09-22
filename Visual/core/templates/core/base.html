@@ -1,96 +1,37 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>{% block title %}DataFlow{% endblock %}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-{% block extra_head %}{% endblock %}
-<style>
-/* ── Cozy Cream Design System ─────────────────────── */
-:root{
-  --cream:#FAF7F2;--cream2:#F3EDE3;--cream3:#EDE4D6;
-  --white:#FFFFFF;--parchment:#FDF9F4;
-  --clay:#C4704A;--clay-light:#F0D5C8;--clay-dark:#9E5336;
-  --sage:#6A9E77;--sage-light:#D2E8D8;--sage-dark:#4A7A57;
-  --rose:#B86B7A;--rose-light:#F0D6DB;
-  --gold:#C9943A;--gold-light:#F5E4BF;
-  --periwinkle:#6B7EC4;--periwinkle-light:#D4D9F5;
-  --mauve:#9B7BA8;--mauve-light:#E6D9EE;
-  --border:#E0D4C4;--border2:#CFC0AC;
-  --ink:#2D1F14;--ink2:#5C4535;--ink3:#8C7060;--ink4:#B8A090;
-  --danger:#C05050;--danger-light:#F5DADA;
-  --success:#4A7A57;--success-light:#D2E8D8;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --mono:'DM Mono','Courier New',monospace;
-  --radius:12px;
-  --shadow-sm:0 2px 8px rgba(45,31,20,.06);
-  --shadow:0 4px 20px rgba(45,31,20,.10);
-  --shadow-lg:0 12px 40px rgba(45,31,20,.14);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--ink);font-family:var(--sans);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.6}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--cream2)}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:28px 28px;opacity:.5;pointer-events:none;z-index:0}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>{% block title %}DataFlow{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    {% block extra_head %}{% endblock %}
 
-/* ── Header ──────────────────────────────────────── */
-header{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:var(--white);border-bottom:1.5px solid var(--border);box-shadow:var(--shadow-sm)}
-.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.logo-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--clay),var(--rose));display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 12px rgba(196,112,74,.3)}
-.logo-name{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--ink)}
-.logo-name em{font-style:italic;color:var(--clay)}
-.header-right{display:flex;align-items:center;gap:10px}
-.pill{font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:100px;letter-spacing:.04em}
-.pill-clay{background:var(--clay-light);color:var(--clay-dark)}
-.pill-sage{background:var(--sage-light);color:var(--sage-dark)}
-.pill-periwinkle{background:var(--periwinkle-light);color:var(--periwinkle)}
-.pulse{width:8px;height:8px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 0 rgba(106,158,119,.4);animation:ring 2s ease-in-out infinite}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(106,158,119,.4)}70%{box-shadow:0 0 0 7px rgba(106,158,119,0)}100%{box-shadow:0 0 0 0 rgba(106,158,119,0)}}
+    {% block page_styles %}{% endblock %}
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <div class="logo-icon">📊</div>
+        <div class="logo-name">Data<em>Flow</em></div>
+      </a>
+      <div class="header-right">
+        {% block header_actions %}
+        <span class="pill pill-sage">Made with sights</span>
+        <span class="pill pill-clay">v1.0</span>
+        <div class="pulse"></div>
+        {% endblock %}
+      </div>
+    </header>
 
-/* ── Nav actions ─────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:500;font-size:.88rem;padding:10px 22px;border-radius:100px;cursor:pointer;transition:all .2s;text-decoration:none;border:1.5px solid transparent}
-.btn-primary{background:var(--clay);color:var(--white);border-color:var(--clay);box-shadow:0 3px 12px rgba(196,112,74,.3)}
-.btn-primary:hover{background:var(--clay-dark);transform:translateY(-1px);box-shadow:0 5px 18px rgba(196,112,74,.4)}
-.btn-ghost{background:var(--white);color:var(--ink2);border-color:var(--border2)}
-.btn-ghost:hover{border-color:var(--clay);color:var(--clay);background:var(--clay-light)}
-.btn-sage{background:var(--sage);color:var(--white);border-color:var(--sage);box-shadow:0 3px 12px rgba(106,158,119,.3)}
-.btn-sage:hover{background:var(--sage-dark);transform:translateY(-1px)}
+    <div class="container">{% block content %}{% endblock %}</div>
 
-/* ── Container ───────────────────────────────────── */
-.container{position:relative;z-index:1;max-width:1540px;margin:0 auto;padding:40px}
-
-/* ── Alerts (Django messages) ────────────────────── */
-.alert{padding:14px 20px;border-radius:var(--radius);margin-bottom:20px;font-size:.9rem;border:1.5px solid}
-.alert-error{background:var(--danger-light);border-color:var(--danger);color:var(--danger)}
-.alert-success{background:var(--success-light);border-color:var(--success);color:var(--success)}
-</style>
-{% block page_styles %}{% endblock %}
-</head>
-<body>
-
-<header>
-  <a href="/" class="logo">
-    <div class="logo-icon">📊</div>
-    <div class="logo-name">Data<em>Flow</em></div>
-  </a>
-  <div class="header-right">
-    {% block header_actions %}
-    <span class="pill pill-sage">Made with sights</span>
-    <span class="pill pill-clay">v1.0</span>
-    <div class="pulse"></div>
-    {% endblock %}
-  </div>
-</header>
-
-<div class="container">
-  {% block content %}{% endblock %}
-</div>
-
-{% block extra_js %}{% endblock %}
-</body>
+    {% block extra_js %}{% endblock %}
+  </body>
 </html>
