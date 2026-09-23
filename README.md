@@ -142,28 +142,11 @@ Visual/
         └── analytics.py               # column profiling, chart generation, KPIs, quality audit
 ```
 
-## Getting started
 
-**Requirements:** Python 3.10+
 
-```bash
-# 1. Clone the repo
-git clone https://github.com/adityashon/DataFlow.git
-cd DataFlow/Visual
 
-# 2. Install dependencies
-pip install -r requirements.txt
 
-# 3. Start the FastAPI service (handles the actual data processing)
-uvicorn fastapi_service.main:app --port 8001
-
-# 4. In a second terminal, start the Django server (handles the UI)
-python manage.py runserver 8000
-```
-
-Then open **http://127.0.0.1:8000** and upload a file.
-
-> FastAPI's interactive API docs are available at `http://127.0.0.1:8001/docs`
+> FastAPI's interactive API docs are available at `https://dataflow-7fb4.onrender.com/api`
 > if you want to inspect or call the processing endpoint directly.
 
 ## Using it
