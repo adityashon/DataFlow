@@ -1,4 +1,6 @@
-
+  body{
+    user-select: none;
+  }
   .upload-hero {
     text-align: center;
     padding: 60px 24px 40px;
